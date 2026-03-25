@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -26,12 +26,40 @@ const useCountdown = () => {
 
 const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center">
-    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-foreground flex items-center justify-center">
-      <span className="text-2xl sm:text-3xl font-bold font-display">{String(value).padStart(2, "0")}</span>
+    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-[3px] border-hero-foreground/80 flex items-center justify-center bg-hero/80 backdrop-blur-sm shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+      <span className="text-3xl sm:text-4xl font-bold font-display text-hero-foreground">{String(value).padStart(2, "0")}</span>
     </div>
-    <span className="text-xs sm:text-sm mt-2 text-muted-foreground uppercase tracking-wider">{label}</span>
+    <span className="text-xs sm:text-sm mt-3 text-hero-foreground/70 uppercase tracking-widest font-medium">{label}</span>
   </div>
 );
+
+const testimonials = [
+  {
+    text: "Being a part of Avishkar 2K25 at VBIT was a defining experience in my journey. The event stood as a strong representation of innovation, creativity, and collaboration, bringing together individuals driven to build, explore, and push boundaries.\n\nWhat truly set Avishkar apart was not just its scale, but the energy behind it—the seamless coordination, diversity of ideas, and the passion shared by every participant. It created an environment where learning happened naturally through competition, teamwork, and meaningful interactions.\n\nThe experience pushed me to think beyond conventional limits, adapt quickly, and contribute effectively in a fast-paced environment. It strengthened my technical understanding while also improving my communication, problem-solving, and ability to work under pressure.\n\nMore importantly, it gave me real-world exposure to how ideas are executed at scale, from planning to implementation. Being part of Avishkar 2K25 was not just about contributing to an event; it was about being part of a vision that celebrates innovation, collaboration, and continuous growth.",
+    name: "G Ramgopal",
+    role: "Web Designing",
+  },
+  {
+    text: "Avishkar was the turning point of my first year at VBIT. The competition challenged me to think critically and present my ideas with confidence. The mentorship and support from seniors made it an unforgettable experience. I learned more in those two days than in an entire semester of lectures.",
+    name: "Priya Sharma",
+    role: "Content Writing",
+  },
+  {
+    text: "Participating in Avishkar helped me discover my passion for research and technical writing. The structured format of abstract and PPT submission taught me discipline and professionalism. I highly recommend every fresher to take part in this incredible event.",
+    name: "Arjun Reddy",
+    role: "Technical Team",
+  },
+];
+
+const useTestimonialCarousel = (count: number, interval = 5000) => {
+  const [active, setActive] = useState(0);
+  const next = useCallback(() => setActive((p) => (p + 1) % count), [count]);
+  useEffect(() => {
+    const id = setInterval(next, interval);
+    return () => clearInterval(id);
+  }, [next, interval]);
+  return { active, setActive };
+};
 
 const timelineEvents = [
   { date: "March 6", title: "Registration Opens", side: "left" },
