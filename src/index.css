@@ -67,7 +67,6 @@
   .page-container {
     @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16;
   }
-<<<<<<< HEAD
   .page-title,
   .section-title {
     @apply flex items-center justify-center gap-4 sm:gap-6 mb-10 sm:mb-14 text-3xl sm:text-5xl font-bold text-black m-0;
@@ -79,15 +78,6 @@
   .section-title::after {
     content: "";
     @apply block h-[3px] w-16 sm:w-28 bg-[#1B365D];
-=======
-  .page-title {
-    @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 text-foreground;
-    font-family: var(--font-display);
-  }
-  .section-title {
-    @apply text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 text-foreground;
-    font-family: var(--font-display);
->>>>>>> 16ee21494ed574f7578bcdfe68a028facfbcf5e4
   }
 }
 
