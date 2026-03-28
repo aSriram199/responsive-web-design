@@ -1,4 +1,4 @@
-import { Instagram } from "lucide-react";
+import instagramSvg from "@/assets/instagram.svg";
 
 const Footer = () => (
   <footer className="bg-footer text-footer-foreground py-8 mt-auto">
@@ -12,7 +12,7 @@ const Footer = () => (
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 text-footer-foreground hover:text-primary transition-colors"
       >
-        <Instagram size={20} />
+        <img src={instagramSvg} alt="Instagram" className="w-6 h-6 hover:scale-105 transition-transform" />
         <span className="text-sm">Avishkar.2K26</span>
       </a>
     </div>

@@ -91,7 +91,7 @@ const RingUnit = ({ value, label, max, accentColor = "rgba(148,213,255,0.9)" }: 
             left:   STROKE + GAP,
             width:  innerSize,
             height: innerSize,
-            background: "radial-gradient(circle at 38% 32%, #1e2d45, #0a111e)",
+            background: "radial-gradient(circle at 38% 32%, #1e2d45, #0A1628)",
             boxShadow: "inset 0 2px 12px rgba(0,0,0,0.7), inset 0 -1px 4px rgba(255,255,255,0.04)",
           }}
         >
@@ -136,7 +136,7 @@ const CountdownTimer = () => {
   return (
     <section
       className="relative py-16 sm:py-24 overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #060d1a 0%, #0f1e35 50%, #060d1a 100%)" }}
+      style={{ background: "linear-gradient(160deg, #0A1628 0%, #0f1e35 50%, #0A1628 100%)" }}
     >
       {/* Ambient glow layers */}
       <div

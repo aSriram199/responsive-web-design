@@ -89,4 +89,30 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* Custom Hero Animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pureFadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+
+  .animate-fadeUp {
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .animate-fadeIn {
+    /* Different from animate-fade-in to separate logic */
+    animation: pureFadeIn 1.5s ease forwards;
+  }
 }

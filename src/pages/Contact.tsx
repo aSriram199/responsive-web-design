@@ -20,7 +20,7 @@ const Contact = () => {
               Email, call, or complete the form to resolve queries about Avishkar
             </p>
             <p className="text-center">
-              <a href="mailto:avishkar2k26@gmail.com" className="text-primary text-sm underline">avishkar2k25@gmail.com</a>
+              <a href="mailto:avishkar2k26@gmail.com" className="text-primary text-sm underline">avishkar2k26@gmail.com</a>
             </p>
             <p className="text-sm text-muted-foreground text-center">Venkat Ajay - 9014454476</p>
             <p className="text-sm text-muted-foreground text-center">Lohitaksh - 8651909766</p>
