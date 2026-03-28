@@ -28,8 +28,14 @@ const FAQs = () => (
       <div className="max-w-3xl mx-auto">
         <Accordion type="single" collapsible>
           {faqs.map((faq, i) => (
-            <AccordionItem key={i} value={`item-${i}`} className="bg-secondary/50 mb-3 rounded-lg border border-border px-4">
-              <AccordionTrigger className="text-sm sm:text-base text-foreground font-medium hover:no-underline">
+            <AccordionItem
+              key={i}
+              value={`item-${i}`}
+              className="group bg-secondary/50 mb-3 rounded-lg border border-border border-l-4 border-l-transparent px-4
+                         transition-all duration-300 ease-in-out
+                         hover:shadow-lg hover:-translate-y-1 hover:scale-[1.01] hover:bg-background hover:border-l-primary"
+            >
+              <AccordionTrigger className="text-sm sm:text-base text-foreground font-medium hover:no-underline transition-colors duration-300 group-hover:text-primary">
                 {faq.q}
               </AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground">

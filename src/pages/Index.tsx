@@ -1,39 +1,12 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import Layout from "@/components/Layout";
-import heroBg from "@/assets/hero-bg.jpg";
+import CountdownTimer from "@/components/CountdownTimer";
+import FloatingCubesHero from "@/components/FloatingCubesHero";
 
-const targetDate = new Date("2026-04-12T09:00:00");
 
-const useCountdown = () => {
-  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  useEffect(() => {
-    const tick = () => {
-      const diff = Math.max(0, targetDate.getTime() - Date.now());
-      setTime({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-  return time;
-};
-
-const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
-  <div className="flex flex-col items-center mx-2">
-    <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full border-[6px] lg:border-[8px] border-black flex items-center justify-center bg-transparent">
-      <span className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">{String(value).padStart(2, "0")}</span>
-    </div>
-    <span className="text-sm sm:text-base mt-4 text-black uppercase tracking-[0.2em] font-bold">{label}</span>
-  </div>
-);
 
 const testimonials = [
   {
@@ -131,7 +104,6 @@ const TimelineNode = ({ evt, i, totalItems, progress }: { evt: any, i: number, t
 };
 
 const Index = () => {
-  const countdown = useCountdown();
   const carousel = useTestimonialCarousel(testimonials.length);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -144,8 +116,8 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative min-h-[60vh] sm:min-h-[85vh] flex items-center overflow-hidden bg-[#151515]">
-        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" width={1920} height={800} />
+      <section className="relative min-h-[60vh] sm:min-h-[85vh] flex items-center overflow-hidden">
+        <FloatingCubesHero />
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-8 py-16 sm:py-24 flex items-center">
           <div className="max-w-xl lg:max-w-2xl">
             <h1 className="text-4xl sm:text-6xl lg:text-[4.5rem] font-bold text-white tracking-tight leading-[1.1]">
@@ -165,22 +137,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Countdown - white section */}
-      <section className="relative py-16 sm:py-24 bg-white overflow-hidden">
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black tracking-tight shrink-0">
-              Event Commences in :
-            </h2>
-          </div>
-          <div className="flex justify-center gap-4 sm:gap-14 flex-wrap">
-            <CountdownUnit value={countdown.days} label="Days" />
-            <CountdownUnit value={countdown.hours} label="Hours" />
-            <CountdownUnit value={countdown.minutes} label="Minutes" />
-            <CountdownUnit value={countdown.seconds} label="Seconds" />
-          </div>
-        </div>
-      </section>
+      {/* Countdown */}
+      <CountdownTimer />
 
       {/* About */}
       <section className="page-container">
