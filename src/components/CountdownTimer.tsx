@@ -34,22 +34,19 @@ interface RingUnitProps {
 }
 
 const RingUnit = ({ value, label, max, accentColor = "#000000" }: RingUnitProps) => {
-  const SIZE       = 130;
+  const SVG_SIZE   = 130;
   const STROKE     = 4;
   const GAP        = 6;                                   // gap between track and inner circle
-  const radius     = (SIZE / 2) - STROKE / 2;
+  const radius     = (SVG_SIZE / 2) - STROKE / 2;
   const circumference = 2 * Math.PI * radius;
   const progress   = Math.max(0, Math.min(1, value / max));
   const offset     = circumference * (1 - progress);
-  const innerSize  = SIZE - STROKE * 2 - GAP * 2;
+  const innerSize  = SVG_SIZE - STROKE * 2 - GAP * 2;
 
   return (
-    <div className="flex flex-col items-center gap-4 select-none">
+    <div className="flex flex-col items-center gap-2 sm:gap-4 select-none">
       {/* Outer glow wrapper */}
-      <div
-        className="relative"
-        style={{ width: SIZE, height: SIZE }}
-      >
+      <div className="relative w-[60px] sm:w-[90px] md:w-[130px] aspect-square">
         {/* Glow behind the ring */}
         <div
           className="absolute inset-0 rounded-full opacity-20 blur-md pointer-events-none"
@@ -58,21 +55,20 @@ const RingUnit = ({ value, label, max, accentColor = "#000000" }: RingUnitProps)
 
         {/* SVG Ring */}
         <svg
-          width={SIZE}
-          height={SIZE}
-          className="absolute inset-0 rotate-[-90deg]"
+          viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
+          className="absolute inset-0 rotate-[-90deg] w-full h-full"
           style={{ filter: "drop-shadow(0 0 6px rgba(0,0,0,0.2))" }}
         >
           {/* Track */}
           <circle
-            cx={SIZE / 2} cy={SIZE / 2} r={radius}
+            cx={SVG_SIZE / 2} cy={SVG_SIZE / 2} r={radius}
             fill="none"
             stroke="rgba(0,0,0,0.08)"
             strokeWidth={STROKE}
           />
           {/* Progress arc */}
           <circle
-            cx={SIZE / 2} cy={SIZE / 2} r={radius}
+            cx={SVG_SIZE / 2} cy={SVG_SIZE / 2} r={radius}
             fill="none"
             stroke={accentColor}
             strokeWidth={STROKE}
@@ -87,18 +83,17 @@ const RingUnit = ({ value, label, max, accentColor = "#000000" }: RingUnitProps)
         <div
           className="absolute rounded-full flex items-center justify-center bg-white"
           style={{
-            top:    STROKE + GAP,
-            left:   STROKE + GAP,
-            width:  innerSize,
-            height: innerSize,
+            top:    `${((STROKE + GAP) / SVG_SIZE) * 100}%`,
+            left:   `${((STROKE + GAP) / SVG_SIZE) * 100}%`,
+            width:  `${(innerSize / SVG_SIZE) * 100}%`,
+            height: `${(innerSize / SVG_SIZE) * 100}%`,
             boxShadow: "inset 0 2px 8px rgba(0,0,0,0.05), border 1px solid rgba(0,0,0,0.05)",
           }}
         >
           {/* Number */}
           <span
-            className="font-bold text-black leading-none"
+            className="font-bold text-black leading-none text-lg sm:text-2xl md:text-[2.2rem]"
             style={{
-              fontSize: "clamp(1.6rem, 4vw, 2.2rem)",
               fontVariantNumeric: "tabular-nums",
               letterSpacing: "-0.02em",
             }}
@@ -110,7 +105,7 @@ const RingUnit = ({ value, label, max, accentColor = "#000000" }: RingUnitProps)
 
       {/* Label */}
       <span
-        className="text-[10px] sm:text-[11px] uppercase font-semibold tracking-[0.3em]"
+        className="text-[9px] sm:text-[11px] uppercase font-semibold tracking-[0.2em] sm:tracking-[0.3em]"
         style={{ color: "rgba(27, 54, 93, 0.7)" }}
       >
         {label}
@@ -121,9 +116,9 @@ const RingUnit = ({ value, label, max, accentColor = "#000000" }: RingUnitProps)
 
 // ─── Separator dot ─────────────────────────────────────────────────────────
 const Separator = () => (
-  <div className="flex flex-col items-center justify-center gap-2 pb-8 self-center">
-    <span className="w-1 h-1 rounded-full bg-black/20" />
-    <span className="w-1 h-1 rounded-full bg-black/20" />
+  <div className="flex flex-col items-center justify-center gap-1 sm:gap-2 pb-5 sm:pb-8 self-center">
+    <span className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full bg-black/20" />
+    <span className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full bg-black/20" />
   </div>
 );
 
@@ -133,7 +128,7 @@ const CountdownTimer = () => {
 
   return (
     <section className="relative py-16 sm:py-24 overflow-hidden bg-white">
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-2 sm:px-4 text-center">
         {/* Heading */}
         <div className="mb-12 sm:mb-16 w-full flex justify-center">
           <h2 className="section-title">
@@ -142,7 +137,7 @@ const CountdownTimer = () => {
         </div>
 
         {/* Rings row */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
+        <div className="flex items-center justify-center gap-1 sm:gap-3 md:gap-4 flex-nowrap sm:flex-wrap">
           <RingUnit value={days}    label="Days"    max={365} />
           <Separator />
           <RingUnit value={hours}   label="Hours"   max={24}  />
