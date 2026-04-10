@@ -43,9 +43,11 @@ const useTestimonialCarousel = (count: number, interval = 5000) => {
 
   useEffect(() => {
     if (isHovered) return;
-    const id = setInterval(next, interval);
-    return () => clearInterval(id);
-  }, [next, interval, active, isHovered]); // Reset on active change or hover
+    // We use setTimeout instead of setInterval because useEffect re-runs
+    // every time `active` changes, naturally chaining the timeouts.
+    const id = setTimeout(next, interval);
+    return () => clearTimeout(id);
+  }, [next, interval, active, isHovered]);
 
   return { active, setActive, setIsHovered };
 };

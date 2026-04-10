@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // ─── Config ────────────────────────────────────────────────────────────────
-const TARGET_DATE = new Date("2026-04-12T09:00:00");
+const TARGET_DATE = new Date("2026-04-21T09:00:00");
 
 // ─── Hook ──────────────────────────────────────────────────────────────────
 const useCountdown = () => {
@@ -163,7 +163,7 @@ const CountdownTimer = () => {
         {/* Heading */}
         <div className="mb-12 sm:mb-16">
           <p className="text-[11px] sm:text-xs uppercase tracking-[0.4em] font-semibold mb-3" style={{ color: "rgba(148,213,255,0.5)" }}>
-            Avishkar 2K26 &nbsp;·&nbsp; April 12, 2026
+            Avishkar 2K26 &nbsp;·&nbsp; April 21, 2026
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
             Event Commences in&nbsp;:

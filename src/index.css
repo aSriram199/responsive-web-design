@@ -69,7 +69,7 @@
   }
   .page-title,
   .section-title {
-    @apply flex items-center justify-center gap-4 sm:gap-6 mb-10 sm:mb-14 text-3xl sm:text-5xl font-bold text-black m-0;
+    @apply flex items-center justify-center gap-3 sm:gap-6 mb-10 sm:mb-14 text-[26px] sm:text-5xl font-bold text-black m-0 w-full whitespace-nowrap;
     font-family: var(--font-body);
   }
   .page-title::before,
@@ -77,7 +77,7 @@
   .section-title::before,
   .section-title::after {
     content: "";
-    @apply block h-[3px] w-16 sm:w-28 bg-[#1B365D];
+    @apply block h-[3px] flex-auto max-w-[2.5rem] sm:max-w-[7rem] bg-[#1B365D];
   }
 }
 
