@@ -55,7 +55,7 @@ const Index = () => {
             
             {/* Heading */}
             <h1 
-              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tight drop-shadow-2xl animate-fadeUp leading-tight flex flex-col sm:block" 
+              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-body text-white tracking-tight drop-shadow-2xl animate-fadeUp leading-tight flex flex-col sm:block" 
               style={{ animationDelay: '100ms', animationFillMode: 'both' }}
             >
               AVISHKAR
